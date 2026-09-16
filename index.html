@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>INSANOS AWARDS 2026</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #292929;
+            background: #151515;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .login-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .google-btn {
+            background: white;
+            color: #222;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .google-btn:hover {
+            transform: scale(1.03);
+        }
+
+        .user-box {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            background: #222;
+            padding: 8px 12px;
+            border-radius: 10px;
+        }
+
+        .user-box img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
+
+        .logout-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px 50px;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin-bottom: 12px;
+        }
+
+        .hero h2 {
+            color: #aaa;
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+
+        .description {
+            max-width: 700px;
+            margin: auto;
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .main-button {
+            margin-top: 30px;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 8px;
+            background: white;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        #categorias {
+            display: none;
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px 20px 70px;
+        }
+
+        #categorias h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 15px;
+        }
+
+        .categoria {
+            background: #1b1b1b;
+            border: 1px solid #292929;
+            padding: 22px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .categoria:hover {
+            background: #242424;
+            transform: translateY(-3px);
+        }
+
+        .categoria h3 {
+            font-size: 17px;
+        }
+
+        .categoria p {
+            color: #888;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        #votacion {
+            display: none;
+            max-width: 900px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        #votacion h2 {
+            text-align: center;
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        #tipoCategoria {
+            text-align: center;
+            color: #888;
+            margin-bottom: 35px;
+        }
+
+        .nominados {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .nominado {
+            background: #1b1b1b;
+            border: 1px solid #292929;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .nominado h3 {
+            margin-bottom: 15px;
+        }
+
+        .votar-btn {
+            background: white;
+            color: black;
+            border: none;
+            padding: 11px 18px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .volver {
+            display: block;
+            margin: 35px auto 0;
+            background: #292929;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .mensaje {
+            text-align: center;
+            color: #999;
+            padding: 30px;
+            background: #1b1b1b;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 18px;
+            }
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            .hero {
+                padding-top: 55px;
+            }
+
+            .user-box {
+                font-size: 12px;
+            }
+
+            .user-box img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        🏆 INSANOS AWARDS
+    </div>
+
+    <div class="login-area">
+
+        <button
+            id="googleLogin"
+            class="google-btn"
+            onclick="iniciarSesion()">
+            🔵 Iniciar sesión con Google
+        </button>
+
+        <div id="userBox" class="user-box">
+
+            <img id="userPhoto" src="" alt="Foto">
+
+            <span id="userName"></span>
+
+            <button
+                class="logout-btn"
+                onclick="cerrarSesion()">
+                Salir
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<section class="hero" id="hero">
+
+    <h1>🏆 INSANOS AWARDS 2026</h1>
+
+    <h2>Los premios de los Insanos</h2>
+
+    <p class="description">
+        Los Insanos Awards son un evento entre amigos,
+        donde votaremos por ver quién gana cada categoría.
+        Aclaro: solo participan los Insanos o compañeros de ellos.
+    </p>
+
+    <button
+        class="main-button"
+        onclick="mostrarCategorias()">
+        🏆 VER CATEGORÍAS
+    </button>
+
+</section>
+
+
+<section id="categorias">
+
+    <h2>🏆 Categorías</h2>
+
+    <div class="grid">
+
+        <div class="categoria"
+             onclick="abrirCategoria('Meme del año', 'clip')">
+            <h3>😂 Meme del año</h3>
+            <p>El mejor meme del año</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('Timing del año', 'clip')">
+            <h3>⏱️ Timing del año</h3>
+            <p>El momento con el mejor timing</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('El más Pay 2 Win del año', 'persona')">
+            <h3>💰 El más Pay 2 Win del año</h3>
+            <p>El más Pay 2 Win</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('El más Tryhard del año', 'persona')">
+            <h3>🔥 El más Tryhard del año</h3>
+            <p>El más tryhard</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('Salvada del año', 'clip')">
+            <h3>🛟 Salvada del año</h3>
+            <p>La mejor salvada</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('Participación destacada del año', 'persona')">
+            <h3>⭐ Participación destacada del año</h3>
+            <p>Una participación memorable</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('Mejor Roleador del año', 'persona')">
+            <h3>🎭 Mejor Roleador del año</h3>
+            <p>El mejor roleador</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('Fail del año', 'clip')">
+            <h3>💀 Fail del año</h3>
+            <p>El fail más memorable</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('Evento / Serie del año', 'evento')">
+            <h3>🎬 Evento / Serie del año</h3>
+            <p>El mejor evento o serie</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('Mejor creador de contenido del año', 'persona')">
+            <h3>🎥 Mejor creador de contenido del año</h3>
+            <p>El mejor creador</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('El más Skill Issue del año', 'persona')">
+            <h3>🤦 El más Skill Issue del año</h3>
+            <p>El mayor Skill Issue</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('Susto del año', 'clip')">
+            <h3>😱 Susto del año</h3>
+            <p>El susto más memorable</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('Mejor compañero del año', 'persona')">
+            <h3>🤝 Mejor compañero del año</h3>
+            <p>El mejor compañero</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('Más activo del año', 'persona')">
+            <h3>⚡ Más activo del año</h3>
+            <p>El más activo</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('TikTok del año', 'clip')">
+            <h3>📱 TikTok del año</h3>
+            <p>El mejor TikTok</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('Enojo del año', 'clip')">
+            <h3>😡 Enojo del año</h3>
+            <p>El enojo más memorable</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('Vicioso del año', 'persona')">
+            <h3>🎮 Vicioso del año</h3>
+            <p>El más vicioso</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('Remontada del año', 'clip')">
+            <h3>🔄 Remontada del año</h3>
+            <p>La mejor remontada</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('Más Gay del año', 'persona')">
+            <h3>🏳️‍🌈 Más Gay del año</h3>
+            <p>Categoría de los premios</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('Clip fuera de contexto del año', 'clip')">
+            <h3>🌀 Clip fuera de contexto del año</h3>
+            <p>El clip más fuera de contexto</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('Mejor juego del año', 'juego')">
+            <h3>🎮 Mejor juego del año</h3>
+            <p>El mejor juego</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('Clip del año', 'clip')">
+            <h3>🎞️ Clip del año</h3>
+            <p>El mejor clip</p>
+        </div>
+
+        <div class="categoria"
+             onclick="abrirCategoria('El Insano del año', 'persona')">
+            <h3>👑 El Insano del año</h3>
+            <p>Premio principal</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="votacion">
+
+    <h2 id="nombreCategoria"></h2>
+
+    <p id="tipoCategoria"></p>
+
+    <div id="listaNominados" class="nominados"></div>
+
+    <button
+        class="volver"
+        onclick="volverCategorias()">
+        ← Volver a categorías
+    </button>
+
+</section>
+
+
+<script>
+
+/* =========================================================
+   SUPABASE
+   ========================================================= */
+
+const SUPABASE_URL =
+    "https://tpwautqwncwhlntqhawg.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_Rdpk8kwwE3r6Eshz_8mVUQ_fmq6wU25";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =========================================================
+   NOMINADOS
+   ========================================================= */
+
+const nominados = {
+
+    "Meme del año": [],
+
+    "Timing del año": [],
+
+    "El más Pay 2 Win del año": [],
+
+    "El más Tryhard del año": [],
+
+    "Salvada del año": [],
+
+    "Participación destacada del año": [],
+
+    "Mejor Roleador del año": [],
+
+    "Fail del año": [],
+
+    "Evento / Serie del año": [],
+
+    "Mejor creador de contenido del año": [],
+
+    "El más Skill Issue del año": [],
+
+    "Susto del año": [],
+
+    "Mejor compañero del año": [],
+
+    "Más activo del año": [],
+
+    "TikTok del año": [],
+
+    "Enojo del año": [],
+
+    "Vicioso del año": [],
+
+    "Remontada del año": [],
+
+    "Más Gay del año": [],
+
+    "Clip fuera de contexto del año": [],
+
+    "Mejor juego del año": [],
+
+    "Clip del año": [],
+
+    "El Insano del año": []
+
+};
+
+
+/* =========================================================
+   MOSTRAR CATEGORÍAS
+   ========================================================= */
+
+function mostrarCategorias() {
+
+    document.getElementById("hero").style.display = "none";
+
+    document.getElementById("categorias").style.display = "block";
+
+    document.getElementById("votacion").style.display = "none";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =========================================================
+   ABRIR CATEGORÍA
+   ========================================================= */
+
+function abrirCategoria(nombre, tipo) {
+
+    document.getElementById("hero").style.display = "none";
+
+    document.getElementById("categorias").style.display = "none";
+
+    document.getElementById("votacion").style.display = "block";
+
+    document.getElementById("nombreCategoria").textContent = nombre;
+
+
+    let textoTipo = "";
+
+    if (tipo === "clip") {
+
+        textoTipo =
+            "🎬 Categoría basada en clips o momentos";
+
+    }
+
+    else if (tipo === "persona") {
+
+        textoTipo =
+            "👤 Categoría basada en personas";
+
+    }
+
+    else if (tipo === "evento") {
+
+        textoTipo =
+            "🎬 Categoría de eventos o series";
+
+    }
+
+    else if (tipo === "juego") {
+
+        textoTipo =
+            "🎮 Categoría de juegos";
+
+    }
+
+
+    document.getElementById("tipoCategoria").textContent =
+        textoTipo;
+
+
+    const contenedor =
+        document.getElementById("listaNominados");
+
+    contenedor.innerHTML = "";
+
+
+    const lista =
+        nominados[nombre] || [];
+
+
+    if (lista.length === 0) {
+
+        contenedor.innerHTML = `
+            <div class="mensaje">
+                Aún no hay nominados en esta categoría.
+            </div>
+        `;
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+        return;
+    }
+
+
+    lista.forEach((nombreNominado) => {
+
+        const div =
+            document.createElement("div");
+
+        div.className = "nominado";
+
+
+        const titulo =
+            document.createElement("h3");
+
+        titulo.textContent =
+            nombreNominado;
+
+
+        const boton =
+            document.createElement("button");
+
+        boton.className =
+            "votar-btn";
+
+        boton.textContent =
+            "🗳️ VOTAR";
+
+
+        boton.onclick = function() {
+
+            votar(
+                nombre,
+                nombreNominado
+            );
+
+        };
+
+
+        div.appendChild(titulo);
+
+        div.appendChild(boton);
+
+        contenedor.appendChild(div);
+
+    });
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =========================================================
+   VOTAR
+   ========================================================= */
+
+async function votar(categoria, candidato) {
+
+    const {
+        data: {
+            user
+        }
+    } = await supabaseClient.auth.getUser();
+
+
+    if (!user) {
+
+        alert(
+            "Primero debes iniciar sesión con Google. 🔵"
+        );
+
+        await iniciarSesion();
+
+        return;
+    }
+
+
+    /*
+       TODAVÍA NO GUARDAMOS EL VOTO.
+
+       En el siguiente paso crearemos la tabla
+       "votos" en Supabase.
+    */
+
+    alert(
+        "Voto seleccionado para " +
+        candidato +
+        " en " +
+        categoria +
+        " 🎉"
+    );
+}
+
+
+/* =========================================================
+   GOOGLE LOGIN
+   ========================================================= */
+
+async function iniciarSesion() {
+
+    const {
+        error
+    } = await supabaseClient.auth.signInWithOAuth({
+
+        provider: "google",
+
+        options: {
+
+            redirectTo:
+                window.location.origin
+
+        }
+
+    });
+
+
+    if (error) {
+
+        console.error(error);
+
+        alert(
+            "Error al iniciar sesión:\n\n" +
+            error.message
+        );
+
+    }
+}
+
+
+/* =========================================================
+   CERRAR SESIÓN
+   ========================================================= */
+
+async function cerrarSesion() {
+
+    const {
+        error
+    } = await supabaseClient.auth.signOut();
+
+
+    if (error) {
+
+        console.error(error);
+
+        alert(
+            "Error al cerrar sesión:\n\n" +
+            error.message
+        );
+
+        return;
+    }
+
+
+    actualizarUsuario();
+}
+
+
+/* =========================================================
+   MOSTRAR USUARIO
+   ========================================================= */
+
+async function actualizarUsuario() {
+
+    const {
+        data: {
+            user
+        }
+    } = await supabaseClient.auth.getUser();
+
+
+    const googleButton =
+        document.getElementById("googleLogin");
+
+    const userBox =
+        document.getElementById("userBox");
+
+    const userName =
+        document.getElementById("userName");
+
+    const userPhoto =
+        document.getElementById("userPhoto");
+
+
+    if (user) {
+
+        googleButton.style.display = "none";
+
+        userBox.style.display = "flex";
+
+
+        const nombre =
+            user.user_metadata?.full_name ||
+            user.user_metadata?.name ||
+            user.email ||
+            "Usuario";
+
+
+        const foto =
+            user.user_metadata?.avatar_url ||
+            user.user_metadata?.picture ||
+            "";
+
+
+        userName.textContent =
+            nombre;
+
+
+        if (foto) {
+
+            userPhoto.src =
+                foto;
+
+        }
+
+    }
+
+    else {
+
+        googleButton.style.display =
+            "block";
+
+        userBox.style.display =
+            "none";
+
+    }
+}
+
+
+/* =========================================================
+   DETECTAR CAMBIOS DE SESIÓN
+   ========================================================= */
+
+supabaseClient.auth.onAuthStateChange(
+    function(event, session) {
+
+        actualizarUsuario();
+
+    }
+);
+
+
+/* =========================================================
+   VOLVER
+   ========================================================= */
+
+function volverCategorias() {
+
+    document.getElementById("votacion").style.display =
+        "none";
+
+    document.getElementById("categorias").style.display =
+        "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =========================================================
+   INICIO
+   ========================================================= */
+
+actualizarUsuario();
+
+</script>
+
+</body>
+</html>
