@@ -418,6 +418,12 @@ section{
     border-radius:14px;
 }
 
+.participant-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
 .participant-photo{
     width:45px;
     height:45px;
@@ -1017,6 +1023,8 @@ algunos de ellos siendo creadores de contenido.
 
 </div>
 
+<!-- Las fotos se cargan desde la carpeta fotos/ del proyecto. Si falta alguna, se muestran las iniciales. -->
+
 <div class="general-info-section">
 
 <h2>🧑‍🤝‍🧑 Miembros</h2>
@@ -1026,49 +1034,65 @@ algunos de ellos siendo creadores de contenido.
 <div class="insanos-members">
 
 <div class="insano-member">
-<div class="insano-photo">J</div>
+<div class="insano-photo">
+<img src="fotos/johsander.png" alt="Johsandertop102" onerror="this.style.display='none'; this.parentElement.textContent='J';">
+</div>
 <h3>Johsandertop102</h3>
 <p>Miembro</p>
 </div>
 
 <div class="insano-member">
-<div class="insano-photo">JC</div>
+<div class="insano-photo">
+<img src="fotos/jc.png" alt="JC" onerror="this.style.display='none'; this.parentElement.textContent='JC';">
+</div>
 <h3>JC</h3>
 <p>Miembro</p>
 </div>
 
 <div class="insano-member">
-<div class="insano-photo">J</div>
+<div class="insano-photo">
+<img src="fotos/johnny.png" alt="Johnny" onerror="this.style.display='none'; this.parentElement.textContent='J';">
+</div>
 <h3>Johnny</h3>
 <p>Miembro</p>
 </div>
 
 <div class="insano-member">
-<div class="insano-photo">J</div>
+<div class="insano-photo">
+<img src="fotos/josear.png" alt="Josear" onerror="this.style.display='none'; this.parentElement.textContent='J';">
+</div>
 <h3>Josear</h3>
 <p>Miembro</p>
 </div>
 
 <div class="insano-member">
-<div class="insano-photo">J</div>
+<div class="insano-photo">
+<img src="fotos/josue.png" alt="Josue" onerror="this.style.display='none'; this.parentElement.textContent='J';">
+</div>
 <h3>Josue</h3>
 <p>Miembro</p>
 </div>
 
 <div class="insano-member">
-<div class="insano-photo">E</div>
+<div class="insano-photo">
+<img src="fotos/eliam.png" alt="Eliam" onerror="this.style.display='none'; this.parentElement.textContent='E';">
+</div>
 <h3>Eliam</h3>
 <p>Miembro</p>
 </div>
 
 <div class="insano-member">
-<div class="insano-photo">M</div>
+<div class="insano-photo">
+<img src="fotos/manuvader.png" alt="ManuVader" onerror="this.style.display='none'; this.parentElement.textContent='M';">
+</div>
 <h3>ManuVader</h3>
 <p>Miembro</p>
 </div>
 
 <div class="insano-member">
-<div class="insano-photo">G</div>
+<div class="insano-photo">
+<img src="fotos/gabo.png" alt="Gabo" onerror="this.style.display='none'; this.parentElement.textContent='G';">
+</div>
 <h3>Gabo</h3>
 <p>Miembro</p>
 </div>
@@ -1808,42 +1832,42 @@ const participantes = [
 
     {
         nombre:"Johsandertop102",
-        foto:""
+        foto:"fotos/johsander.png"
     },
 
     {
         nombre:"JC",
-        foto:""
+        foto:"fotos/jc.png"
     },
 
     {
         nombre:"Johnny",
-        foto:""
+        foto:"fotos/johnny.png"
     },
 
     {
         nombre:"Josear",
-        foto:""
+        foto:"fotos/josear.png"
     },
 
     {
         nombre:"Josue",
-        foto:""
+        foto:"fotos/josue.png"
     },
 
     {
         nombre:"Eliam",
-        foto:""
+        foto:"fotos/eliam.png"
     },
 
     {
         nombre:"ManuVader",
-        foto:""
+        foto:"fotos/manuvader.png"
     },
 
     {
         nombre:"Gabo",
-        foto:""
+        foto:"fotos/gabo.png"
     }
 
 ];
@@ -2720,7 +2744,10 @@ function mostrarParticipantes(){
 
             <div class="participant-photo">
 
-                ${obtenerIniciales(persona.nombre)}
+                ${persona.foto
+                    ? `<img src="${persona.foto}" alt="${persona.nombre}" onerror="this.style.display='none'; this.parentElement.textContent=obtenerIniciales(persona.nombre);">`
+                    : obtenerIniciales(persona.nombre)
+                }
 
             </div>
 
