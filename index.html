@@ -207,6 +207,10 @@
             font-weight: bold;
         }
 
+        .votar-btn:hover {
+            transform: scale(1.03);
+        }
+
         .volver {
             display: block;
             margin: 35px auto 0;
@@ -491,7 +495,6 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
     "sb_publishable_Rdpk8kwwE3r6Eshz_8mVUQ_fmq6wU25";
 
-
 const supabaseClient =
     window.supabase.createClient(
         SUPABASE_URL,
@@ -714,6 +717,7 @@ async function votar(categoria, candidato) {
     } = await supabaseClient.auth.getUser();
 
 
+    // Comprobar sesión
     if (!user) {
 
         alert(
@@ -726,19 +730,54 @@ async function votar(categoria, candidato) {
     }
 
 
-    /*
-       TODAVÍA NO GUARDAMOS EL VOTO.
+    // Guardar voto
+    const {
+        error
+    } = await supabaseClient
+        .from("votos")
+        .insert({
 
-       En el siguiente paso crearemos la tabla
-       "votos" en Supabase.
-    */
+            usuario_id: user.id,
 
+            categoria: categoria,
+
+            nominado: candidato
+
+        });
+
+
+    // Error
+    if (error) {
+
+        console.error(error);
+
+
+        // Código 23505 = ya existe un voto
+        // para ese usuario y categoría
+        if (error.code === "23505") {
+
+            alert(
+                "Ya votaste en esta categoría. 🗳️"
+            );
+
+            return;
+        }
+
+
+        alert(
+            "No se pudo guardar tu voto.\n\n" +
+            error.message
+        );
+
+        return;
+    }
+
+
+    // Voto guardado
     alert(
-        "Voto seleccionado para " +
-        candidato +
-        " en " +
-        categoria +
-        " 🎉"
+        "¡Voto registrado! 🗳️🏆\n\n" +
+        "Tu voto fue para " +
+        candidato
     );
 }
 
