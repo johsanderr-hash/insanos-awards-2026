@@ -17,6 +17,10 @@
     padding:0;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     font-family:Arial, sans-serif;
     color:white;
@@ -28,7 +32,7 @@ body{
     min-height:100vh;
 }
 
-/* ---------------- HEADER ---------------- */
+/* ================= HEADER ================= */
 
 header{
     position:sticky;
@@ -78,7 +82,7 @@ nav button:hover{
     transform:translateY(-1px);
 }
 
-/* ---------------- MAIN ---------------- */
+/* ================= MAIN ================= */
 
 main{
     max-width:1200px;
@@ -90,7 +94,11 @@ section{
     scroll-margin-top:90px;
 }
 
-/* ---------------- HERO ---------------- */
+.hidden{
+    display:none !important;
+}
+
+/* ================= HERO ================= */
 
 .hero{
     text-align:center;
@@ -149,7 +157,7 @@ section{
     border:1px solid #38384e;
 }
 
-/* ---------------- USER ---------------- */
+/* ================= USER ================= */
 
 .user-box{
     max-width:650px;
@@ -199,7 +207,7 @@ section{
     color:white;
 }
 
-/* ---------------- TITLES ---------------- */
+/* ================= TITLES ================= */
 
 .section-title{
     text-align:center;
@@ -215,7 +223,7 @@ section{
     color:#9999aa;
 }
 
-/* ---------------- INFO CARDS ---------------- */
+/* ================= INFO ================= */
 
 .info-grid{
     display:grid;
@@ -246,7 +254,7 @@ section{
     line-height:1.5;
 }
 
-/* ---------------- CATEGORIES ---------------- */
+/* ================= CATEGORIES ================= */
 
 .categories{
     display:grid;
@@ -279,7 +287,7 @@ section{
     font-size:17px;
 }
 
-/* ---------------- NOMINEES ---------------- */
+/* ================= NOMINEES ================= */
 
 .nominees{
     display:grid;
@@ -354,7 +362,7 @@ section{
     border-radius:15px;
 }
 
-/* ---------------- INFORMATION SECTIONS ---------------- */
+/* ================= CONTENT ================= */
 
 .content-box{
     background:linear-gradient(145deg,#171722,#101017);
@@ -374,6 +382,8 @@ section{
     color:#c5c5d0;
 }
 
+/* ================= SOCIAL ================= */
+
 .social{
     display:inline-flex;
     align-items:center;
@@ -390,7 +400,7 @@ section{
     background:#303044;
 }
 
-/* ---------------- PARTICIPANTS ---------------- */
+/* ================= PARTICIPANTS ================= */
 
 .participants{
     display:grid;
@@ -419,7 +429,7 @@ section{
     font-weight:bold;
 }
 
-/* ---------------- FAQ ---------------- */
+/* ================= FAQ ================= */
 
 .faq{
     display:grid;
@@ -444,7 +454,148 @@ details p{
     line-height:1.6;
 }
 
-/* ---------------- FOOTER ---------------- */
+/* ================= ADMIN ================= */
+
+.admin-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+.admin-header h2{
+    color:#f5d0fe;
+}
+
+.admin-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.admin-btn{
+    background:#20202d;
+    border:1px solid #45455c;
+    color:white;
+    padding:10px 15px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.admin-btn:hover{
+    background:#303044;
+}
+
+.admin-btn.refresh{
+    background:linear-gradient(90deg,#7c3aed,#db2777);
+    border:none;
+}
+
+.admin-stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.admin-stat{
+    background:linear-gradient(145deg,#171722,#101017);
+    border:1px solid #303044;
+    border-radius:16px;
+    padding:20px;
+}
+
+.admin-stat span{
+    display:block;
+    color:#999;
+    font-size:14px;
+    margin-bottom:8px;
+}
+
+.admin-stat strong{
+    font-size:30px;
+}
+
+.admin-search{
+    width:100%;
+    background:#11111a;
+    border:1px solid #353548;
+    color:white;
+    padding:14px;
+    border-radius:12px;
+    margin-bottom:20px;
+    outline:none;
+}
+
+.admin-search:focus{
+    border-color:#7c3aed;
+}
+
+.votes-container{
+    display:grid;
+    gap:12px;
+}
+
+.vote-row{
+    background:linear-gradient(145deg,#171722,#101017);
+    border:1px solid #303044;
+    border-radius:15px;
+    padding:17px;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr auto;
+    align-items:center;
+    gap:15px;
+}
+
+.vote-info small{
+    display:block;
+    color:#888;
+    margin-bottom:5px;
+    font-size:12px;
+}
+
+.vote-info strong{
+    display:block;
+    color:#eee;
+}
+
+.delete-vote{
+    background:#7f1d1d;
+    border:1px solid #991b1b;
+    color:white;
+    padding:9px 12px;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.delete-vote:hover{
+    background:#991b1b;
+}
+
+.admin-empty{
+    text-align:center;
+    color:#999;
+    background:#11111a;
+    border:1px solid #29293a;
+    border-radius:15px;
+    padding:35px;
+}
+
+.admin-warning{
+    background:rgba(124,58,237,.1);
+    border:1px solid #4c1d95;
+    color:#c4b5fd;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:20px;
+    line-height:1.5;
+}
+
+/* ================= FOOTER ================= */
 
 footer{
     text-align:center;
@@ -453,9 +604,7 @@ footer{
     color:#777;
 }
 
-.hidden{
-    display:none;
-}
+/* ================= MOBILE ================= */
 
 @media(max-width:700px){
 
@@ -484,6 +633,14 @@ footer{
         padding:9px 10px;
     }
 
+    .vote-row{
+        grid-template-columns:1fr;
+    }
+
+    .delete-vote{
+        width:100%;
+    }
+
 }
 
 </style>
@@ -499,12 +656,39 @@ footer{
 <div class="logo">🏆 INSANOS AWARDS</div>
 
 <nav>
-    <button onclick="irA('inicio')">Inicio</button>
-    <button onclick="irA('categorias')">Categorías</button>
-    <button onclick="irA('redes')">Redes</button>
-    <button onclick="irA('participantes')">Participantes</button>
-    <button onclick="irA('evento')">Evento</button>
-    <button onclick="irA('creditos')">Créditos</button>
+
+<button onclick="irA('inicio')">
+Inicio
+</button>
+
+<button onclick="irA('categorias')">
+Categorías
+</button>
+
+<button onclick="irA('redes')">
+Redes
+</button>
+
+<button onclick="irA('participantes')">
+Participantes
+</button>
+
+<button onclick="irA('evento')">
+Evento
+</button>
+
+<button onclick="irA('creditos')">
+Créditos
+</button>
+
+<button
+id="adminNavButton"
+class="hidden"
+onclick="abrirAdmin()"
+>
+👑 Administración
+</button>
+
 </nav>
 
 </div>
@@ -514,15 +698,20 @@ footer{
 
 <main>
 
+
 <!-- ================= INICIO ================= -->
 
 <section id="inicio">
 
 <div class="hero">
 
-<h1>🏆 INSANOS AWARDS 2026</h1>
+<h1>
+🏆 INSANOS AWARDS 2026
+</h1>
 
-<h2>Los premios de los Insanos</h2>
+<h2>
+Los premios de los Insanos
+</h2>
 
 <p>
 Los Insanos Awards son un evento entre amigos, donde votaremos por ver quién gana cada categoría.
@@ -531,11 +720,17 @@ Aclaro: solo participan los Insanos o compañeros de ellos.
 
 <div class="hero-buttons">
 
-<button class="primary-btn" onclick="irA('categorias')">
+<button
+class="primary-btn"
+onclick="irA('categorias')"
+>
 🗳️ Ver categorías
 </button>
 
-<button class="secondary-btn" onclick="irA('evento')">
+<button
+class="secondary-btn"
+onclick="irA('evento')"
+>
 📅 Sobre el evento
 </button>
 
@@ -544,11 +739,15 @@ Aclaro: solo participan los Insanos o compañeros de ellos.
 </div>
 
 
-<div class="user-box" id="userBox">
+<div class="user-box">
 
 <div class="user-info">
 
-<img id="userAvatar" src="">
+<img
+id="userAvatar"
+src=""
+alt="Usuario"
+>
 
 <span id="userName">
 No has iniciado sesión
@@ -556,7 +755,11 @@ No has iniciado sesión
 
 </div>
 
-<button class="login-btn" id="loginButton" onclick="iniciarSesion()">
+<button
+class="login-btn"
+id="loginButton"
+onclick="iniciarSesion()"
+>
 🔵 Iniciar sesión con Google
 </button>
 
@@ -566,27 +769,70 @@ No has iniciado sesión
 <div class="info-grid">
 
 <div class="info-card">
-<div class="icon">🏆</div>
-<h3>23 categorías</h3>
-<p>Una variedad de premios para reconocer momentos, personas, juegos y mucho más.</p>
+
+<div class="icon">
+🏆
 </div>
 
-<div class="info-card">
-<div class="icon">🗳️</div>
-<h3>Votaciones</h3>
-<p>Cada persona podrá votar una vez por categoría.</p>
+<h3>
+23 categorías
+</h3>
+
+<p>
+Una variedad de premios para reconocer momentos, personas, juegos y mucho más.
+</p>
+
 </div>
 
-<div class="info-card">
-<div class="icon">🎬</div>
-<h3>Clips y momentos</h3>
-<p>Algunas categorías estarán relacionadas con clips y momentos ocurridos durante el año.</p>
-</div>
 
 <div class="info-card">
-<div class="icon">👥</div>
-<h3>Los Insanos</h3>
-<p>El grupo inicial y otros participantes podrán aparecer como nominados.</p>
+
+<div class="icon">
+🗳️
+</div>
+
+<h3>
+Votaciones
+</h3>
+
+<p>
+Cada persona podrá votar una vez por categoría.
+</p>
+
+</div>
+
+
+<div class="info-card">
+
+<div class="icon">
+🎬
+</div>
+
+<h3>
+Clips y momentos
+</h3>
+
+<p>
+Algunas categorías estarán relacionadas con clips y momentos ocurridos durante el año.
+</p>
+
+</div>
+
+
+<div class="info-card">
+
+<div class="icon">
+👥
+</div>
+
+<h3>
+Los Insanos
+</h3>
+
+<p>
+El grupo inicial y otros participantes podrán aparecer como nominados.
+</p>
+
 </div>
 
 </div>
@@ -600,22 +846,35 @@ No has iniciado sesión
 
 <div class="section-title">
 
-<h2>🏆 Categorías</h2>
+<h2>
+🏆 Categorías
+</h2>
 
-<p>Elige una categoría para ver sus nominados.</p>
+<p>
+Elige una categoría para ver sus nominados.
+</p>
 
 </div>
 
-<div id="categoryList" class="categories"></div>
+<div
+id="categoryList"
+class="categories"
+></div>
 
 </section>
 
 
-<!-- ================= VISTA DE CATEGORIA ================= -->
+<!-- ================= VISTA CATEGORIA ================= -->
 
-<section id="categoryView" class="hidden">
+<section
+id="categoryView"
+class="hidden"
+>
 
-<button class="back-btn" onclick="volverCategorias()">
+<button
+class="back-btn"
+onclick="volverCategorias()"
+>
 ← Volver a categorías
 </button>
 
@@ -623,11 +882,16 @@ No has iniciado sesión
 
 <h2 id="categoryTitle"></h2>
 
-<p>Selecciona al nominado por el que quieres votar.</p>
+<p>
+Selecciona al nominado por el que quieres votar.
+</p>
 
 </div>
 
-<div id="nomineeList" class="nominees"></div>
+<div
+id="nomineeList"
+class="nominees"
+></div>
 
 </section>
 
@@ -638,19 +902,26 @@ No has iniciado sesión
 
 <div class="section-title">
 
-<h2>🌐 Redes</h2>
+<h2>
+🌐 Redes
+</h2>
 
-<p>Redes sociales de los participantes y del evento.</p>
+<p>
+Redes sociales de los participantes y del evento.
+</p>
 
 </div>
 
+
 <div class="content-box">
 
-<h3>Johsandertop102</h3>
+<h3>
+Johsandertop102
+</h3>
 
 <p>
-Por ahora esta es la primera red añadida al sitio. Más adelante podremos agregar
-las redes de los demás participantes.
+Por ahora esta es la primera red añadida al sitio.
+Más adelante podremos agregar las redes de los demás participantes.
 </p>
 
 <a
@@ -672,11 +943,16 @@ target="_blank"
 
 <div class="section-title">
 
-<h2>👥 Participantes</h2>
+<h2>
+👥 Participantes
+</h2>
 
-<p>El grupo inicial de Los Insanos y los nominados principales.</p>
+<p>
+El grupo inicial de Los Insanos y los nominados principales.
+</p>
 
 </div>
+
 
 <div class="content-box">
 
@@ -687,7 +963,11 @@ Aparte de ellos habrá otros participantes, pero no son del grupo inicial.
 
 </div>
 
-<div class="participants" id="participantList"></div>
+
+<div
+class="participants"
+id="participantList"
+></div>
 
 </section>
 
@@ -698,15 +978,22 @@ Aparte de ellos habrá otros participantes, pero no son del grupo inicial.
 
 <div class="section-title">
 
-<h2>📅 El evento</h2>
+<h2>
+📅 El evento
+</h2>
 
-<p>Un poco sobre cómo nació la idea de los Insanos Awards.</p>
+<p>
+Un poco sobre cómo nació la idea de los Insanos Awards.
+</p>
 
 </div>
 
+
 <div class="content-box">
 
-<h3>¿Cómo nació la idea?</h3>
+<h3>
+¿Cómo nació la idea?
+</h3>
 
 <p>
 Los Insanos Awards es un evento que me llegó a la cabeza a mí (Johsander).
@@ -738,9 +1025,12 @@ También aclaro que no hice todo solo, pero para eso está la sección de crédi
 
 </div>
 
+
 <div class="content-box">
 
-<h3>📆 Fecha aproximada</h3>
+<h3>
+📆 Fecha aproximada
+</h3>
 
 <p>
 La fecha todavía no está clara. Por ahora se estima que podría realizarse
@@ -758,31 +1048,56 @@ en diciembre o incluso en 2027.
 
 <div class="section-title">
 
-<h2>🎬 Créditos</h2>
+<h2>
+🎬 Créditos
+</h2>
 
-<p>Personas que hicieron posible el proyecto.</p>
+<p>
+Personas que hicieron posible el proyecto.
+</p>
 
 </div>
 
+
 <div class="content-box">
 
-<h3>Idea principal del evento</h3>
-<p>Johsander</p>
+<h3>
+Idea principal del evento
+</h3>
+
+<p>
+Johsander
+</p>
 
 <br>
 
-<h3>Organizadores</h3>
-<p>Johsander y Eliam</p>
+<h3>
+Organizadores
+</h3>
+
+<p>
+Johsander y Eliam
+</p>
 
 <br>
 
-<h3>Página hecha por</h3>
-<p>Johsander</p>
+<h3>
+Página hecha por
+</h3>
+
+<p>
+Johsander
+</p>
 
 <br>
 
-<h3>Inspiración</h3>
-<p>Webones Awards</p>
+<h3>
+Inspiración
+</h3>
+
+<p>
+Webones Awards
+</p>
 
 </div>
 
@@ -795,21 +1110,29 @@ en diciembre o incluso en 2027.
 
 <div class="section-title">
 
-<h2>❓ Preguntas sobre el evento</h2>
+<h2>
+❓ Preguntas sobre el evento
+</h2>
 
-<p>Algunas respuestas sobre cómo funcionarán los Insanos Awards.</p>
+<p>
+Algunas respuestas sobre cómo funcionarán los Insanos Awards.
+</p>
 
 </div>
 
+
 <div class="faq">
+
 
 <details>
 
-<summary>¿Quiénes pueden participar?</summary>
+<summary>
+¿Quiénes pueden participar?
+</summary>
 
 <p>
-Principalmente los Insanos y compañeros de ellos. También podrán existir
-otros nominados dependiendo de la categoría.
+Principalmente los Insanos y compañeros de ellos.
+También podrán existir otros nominados dependiendo de la categoría.
 </p>
 
 </details>
@@ -817,7 +1140,9 @@ otros nominados dependiendo de la categoría.
 
 <details>
 
-<summary>¿Cuántas categorías habrá?</summary>
+<summary>
+¿Cuántas categorías habrá?
+</summary>
 
 <p>
 Actualmente hay 23 categorías planeadas para los Insanos Awards.
@@ -828,7 +1153,9 @@ Actualmente hay 23 categorías planeadas para los Insanos Awards.
 
 <details>
 
-<summary>¿Puedo votar más de una vez?</summary>
+<summary>
+¿Puedo votar más de una vez?
+</summary>
 
 <p>
 No. El sistema permite un voto por usuario en cada categoría.
@@ -839,7 +1166,9 @@ No. El sistema permite un voto por usuario en cada categoría.
 
 <details>
 
-<summary>¿Todas las categorías tendrán los mismos nominados?</summary>
+<summary>
+¿Todas las categorías tendrán los mismos nominados?
+</summary>
 
 <p>
 No. Algunas categorías tendrán a todos los Insanos como nominados,
@@ -852,11 +1181,13 @@ eventos o juegos.
 
 <details>
 
-<summary>¿Cuándo serán los premios?</summary>
+<summary>
+¿Cuándo serán los premios?
+</summary>
 
 <p>
-Todavía no hay una fecha definitiva. Por ahora se estima que será en
-diciembre o posiblemente en 2027.
+Todavía no hay una fecha definitiva. Por ahora se estima que será
+en diciembre o posiblemente en 2027.
 </p>
 
 </details>
@@ -864,7 +1195,9 @@ diciembre o posiblemente en 2027.
 
 <details>
 
-<summary>¿Los nominados pueden cambiar?</summary>
+<summary>
+¿Los nominados pueden cambiar?
+</summary>
 
 <p>
 Sí. Las categorías todavía están en desarrollo, por lo que algunos
@@ -873,9 +1206,132 @@ nominados y detalles pueden cambiar más adelante.
 
 </details>
 
+
 </div>
 
 </section>
+
+
+<!-- ================= ADMIN ================= -->
+
+<section
+id="administracion"
+class="hidden"
+>
+
+<div class="section-title">
+
+<h2>
+👑 Panel de Administración
+</h2>
+
+<p>
+Administración privada de las votaciones.
+</p>
+
+</div>
+
+
+<div class="admin-warning">
+
+🔒 Esta sección solamente está disponible para las cuentas autorizadas
+como administradores.
+
+</div>
+
+
+<div class="admin-header">
+
+<h2>
+📊 Votaciones
+</h2>
+
+<div class="admin-actions">
+
+<button
+class="admin-btn refresh"
+onclick="cargarVotos()"
+>
+🔄 Actualizar
+</button>
+
+<button
+class="admin-btn"
+onclick="cerrarAdmin()"
+>
+← Volver
+</button>
+
+</div>
+
+</div>
+
+
+<div class="admin-stats">
+
+<div class="admin-stat">
+
+<span>
+Total de votos
+</span>
+
+<strong id="totalVotes">
+0
+</strong>
+
+</div>
+
+
+<div class="admin-stat">
+
+<span>
+Categorías con votos
+</span>
+
+<strong id="totalCategories">
+0
+</strong>
+
+</div>
+
+
+<div class="admin-stat">
+
+<span>
+Nominados votados
+</span>
+
+<strong id="totalNominees">
+0
+</strong>
+
+</div>
+
+</div>
+
+
+<input
+id="voteSearch"
+class="admin-search"
+type="text"
+placeholder="🔎 Buscar por usuario, categoría o nominado..."
+oninput="filtrarVotos()"
+>
+
+
+<div
+id="votesContainer"
+class="votes-container"
+>
+
+<div class="admin-empty">
+Cargando votos...
+</div>
+
+</div>
+
+</section>
+
 
 </main>
 
@@ -1130,16 +1586,73 @@ const categorias = [
 
 
 /* =========================================================
+   VARIABLES ADMIN
+========================================================= */
+
+let todosLosVotos = [];
+
+let esAdministrador = false;
+
+
+/* =========================================================
    NAVEGACION
 ========================================================= */
 
 function irA(id){
 
-    document
-        .getElementById(id)
-        .scrollIntoView({
+    cerrarVistasEspeciales();
+
+    const elemento =
+        document.getElementById(id);
+
+    if(elemento){
+
+        elemento.scrollIntoView({
             behavior:"smooth"
         });
+
+    }
+
+}
+
+
+function cerrarVistasEspeciales(){
+
+    document
+        .getElementById("categoryView")
+        .classList.add("hidden");
+
+    document
+        .getElementById("administracion")
+        .classList.add("hidden");
+
+    document
+        .getElementById("inicio")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("categorias")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("redes")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("participantes")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("evento")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("creditos")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("preguntas")
+        .classList.remove("hidden");
 
 }
 
@@ -1155,12 +1668,15 @@ function mostrarCategorias(){
 
     contenedor.innerHTML = "";
 
+
     categorias.forEach(categoria => {
 
         const div =
             document.createElement("div");
 
-        div.className = "category";
+        div.className =
+            "category";
+
 
         div.innerHTML = `
 
@@ -1174,8 +1690,10 @@ function mostrarCategorias(){
 
         `;
 
+
         div.onclick = () =>
             abrirCategoria(categoria);
+
 
         contenedor.appendChild(div);
 
@@ -1216,6 +1734,10 @@ function abrirCategoria(categoria){
 
     document
         .getElementById("preguntas")
+        .classList.add("hidden");
+
+    document
+        .getElementById("administracion")
         .classList.add("hidden");
 
     document
@@ -1273,7 +1795,8 @@ function abrirCategoria(categoria){
         const div =
             document.createElement("div");
 
-        div.className = "nominee";
+        div.className =
+            "nominee";
 
 
         let imagenHTML;
@@ -1318,15 +1841,22 @@ function abrirCategoria(categoria){
 
             <button
                 class="vote-btn"
-                onclick="votar(
-                    '${categoria.nombre.replace(/'/g,"\\'")}',
-                    '${nombre.replace(/'/g,"\\'")}'
-                )"
             >
                 🗳️ Votar
             </button>
 
         `;
+
+
+        const boton =
+            div.querySelector(".vote-btn");
+
+
+        boton.onclick = () =>
+            votar(
+                categoria.nombre,
+                nombre
+            );
 
 
         lista.appendChild(div);
@@ -1344,7 +1874,7 @@ function abrirCategoria(categoria){
 
 
 /* =========================================================
-   VOLVER
+   VOLVER CATEGORIAS
 ========================================================= */
 
 function volverCategorias(){
@@ -1397,6 +1927,7 @@ function obtenerIniciales(nombre){
             .trim()
             .split(" ");
 
+
     if(partes.length === 1){
 
         return partes[0]
@@ -1404,6 +1935,7 @@ function obtenerIniciales(nombre){
             .toUpperCase();
 
     }
+
 
     return (
         partes[0][0] +
@@ -1442,6 +1974,17 @@ async function votar(categoria, candidato){
     }
 
 
+    const metadata =
+        user.user_metadata || {};
+
+
+    const nombreUsuario =
+        metadata.full_name ||
+        metadata.name ||
+        user.email ||
+        "Usuario";
+
+
     const {
         error
     } =
@@ -1450,6 +1993,8 @@ async function votar(categoria, candidato){
             .insert({
 
                 usuario_id:user.id,
+
+                usuario_nombre:nombreUsuario,
 
                 categoria:categoria,
 
@@ -1540,13 +2085,21 @@ async function cerrarSesion(){
         .auth
         .signOut();
 
+    esAdministrador = false;
+
+    document
+        .getElementById("adminNavButton")
+        .classList.add("hidden");
+
+    cerrarVistasEspeciales();
+
     actualizarUsuario();
 
 }
 
 
 /* =========================================================
-   USUARIO
+   ACTUALIZAR USUARIO
 ========================================================= */
 
 async function actualizarUsuario(){
@@ -1616,22 +2169,36 @@ async function actualizarUsuario(){
         boton.onclick =
             cerrarSesion;
 
+
+        await comprobarAdministrador(user.id);
+
     }else{
 
         nombre.textContent =
             "No has iniciado sesión";
 
+
         avatar.src =
             "https://ui-avatars.com/api/?name=Usuario";
+
 
         boton.textContent =
             "🔵 Iniciar sesión con Google";
 
+
         boton.className =
             "login-btn";
 
+
         boton.onclick =
             iniciarSesion;
+
+
+        esAdministrador = false;
+
+        document
+            .getElementById("adminNavButton")
+            .classList.add("hidden");
 
     }
 
@@ -1639,7 +2206,63 @@ async function actualizarUsuario(){
 
 
 /* =========================================================
-   LISTA DE PARTICIPANTES
+   COMPROBAR ADMIN
+========================================================= */
+
+async function comprobarAdministrador(userId){
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from("admins")
+            .select("user_id")
+            .eq("user_id",userId)
+            .maybeSingle();
+
+
+    if(error){
+
+        console.error(
+            "Error comprobando administrador:",
+            error
+        );
+
+        esAdministrador = false;
+
+        document
+            .getElementById("adminNavButton")
+            .classList.add("hidden");
+
+        return;
+
+    }
+
+
+    if(data){
+
+        esAdministrador = true;
+
+        document
+            .getElementById("adminNavButton")
+            .classList.remove("hidden");
+
+    }else{
+
+        esAdministrador = false;
+
+        document
+            .getElementById("adminNavButton")
+            .classList.add("hidden");
+
+    }
+
+}
+
+
+/* =========================================================
+   PARTICIPANTES
 ========================================================= */
 
 function mostrarParticipantes(){
@@ -1682,7 +2305,574 @@ function mostrarParticipantes(){
 
 
 /* =========================================================
-   INICIO
+   ABRIR ADMIN
+========================================================= */
+
+async function abrirAdmin(){
+
+    if(!esAdministrador){
+
+        alert(
+            "No tienes permisos para acceder a esta sección."
+        );
+
+        return;
+
+    }
+
+
+    document
+        .getElementById("inicio")
+        .classList.add("hidden");
+
+    document
+        .getElementById("categorias")
+        .classList.add("hidden");
+
+    document
+        .getElementById("categoryView")
+        .classList.add("hidden");
+
+    document
+        .getElementById("redes")
+        .classList.add("hidden");
+
+    document
+        .getElementById("participantes")
+        .classList.add("hidden");
+
+    document
+        .getElementById("evento")
+        .classList.add("hidden");
+
+    document
+        .getElementById("creditos")
+        .classList.add("hidden");
+
+    document
+        .getElementById("preguntas")
+        .classList.add("hidden");
+
+    document
+        .getElementById("administracion")
+        .classList.remove("hidden");
+
+
+    document
+        .getElementById("administracion")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+
+    await cargarVotos();
+
+}
+
+
+/* =========================================================
+   CERRAR ADMIN
+========================================================= */
+
+function cerrarAdmin(){
+
+    document
+        .getElementById("administracion")
+        .classList.add("hidden");
+
+    document
+        .getElementById("inicio")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("categorias")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("redes")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("participantes")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("evento")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("creditos")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("preguntas")
+        .classList.remove("hidden");
+
+    irA("inicio");
+
+}
+
+
+/* =========================================================
+   CARGAR VOTOS
+========================================================= */
+
+async function cargarVotos(){
+
+    if(!esAdministrador){
+
+        return;
+
+    }
+
+
+    const contenedor =
+        document.getElementById("votesContainer");
+
+
+    contenedor.innerHTML = `
+
+        <div class="admin-empty">
+            🔄 Cargando votos...
+        </div>
+
+    `;
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from("votos")
+            .select(
+                "id, usuario_id, usuario_nombre, categoria, nominado, creado_en"
+            )
+            .order(
+                "creado_en",
+                {
+                    ascending:false
+                }
+            );
+
+
+    if(error){
+
+        console.error(error);
+
+
+        contenedor.innerHTML = `
+
+            <div class="admin-empty">
+
+                ❌ No se pudieron cargar los votos.
+
+                <br><br>
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    todosLosVotos =
+        data || [];
+
+
+    actualizarEstadisticas(
+        todosLosVotos
+    );
+
+
+    mostrarVotos(
+        todosLosVotos
+    );
+
+}
+
+
+/* =========================================================
+   ESTADISTICAS
+========================================================= */
+
+function actualizarEstadisticas(votos){
+
+    const total =
+        votos.length;
+
+
+    const categoriasUnicas =
+        new Set(
+            votos.map(
+                voto => voto.categoria
+            )
+        ).size;
+
+
+    const nominadosUnicos =
+        new Set(
+            votos.map(
+                voto => voto.nominado
+            )
+        ).size;
+
+
+    document
+        .getElementById("totalVotes")
+        .textContent =
+            total;
+
+
+    document
+        .getElementById("totalCategories")
+        .textContent =
+            categoriasUnicas;
+
+
+    document
+        .getElementById("totalNominees")
+        .textContent =
+            nominadosUnicos;
+
+}
+
+
+/* =========================================================
+   MOSTRAR VOTOS
+========================================================= */
+
+function mostrarVotos(votos){
+
+    const contenedor =
+        document.getElementById("votesContainer");
+
+
+    if(votos.length === 0){
+
+        contenedor.innerHTML = `
+
+            <div class="admin-empty">
+
+                🗳️
+
+                <br><br>
+
+                Todavía no hay votos registrados.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    contenedor.innerHTML = "";
+
+
+    votos.forEach(voto => {
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "vote-row";
+
+
+        const usuario =
+            voto.usuario_nombre ||
+            "Usuario antiguo";
+
+
+        const fecha =
+            formatearFecha(
+                voto.creado_en
+            );
+
+
+        div.innerHTML = `
+
+            <div class="vote-info">
+
+                <small>
+                    👤 VOTÓ
+                </small>
+
+                <strong>
+                    ${escaparHTML(usuario)}
+                </strong>
+
+            </div>
+
+
+            <div class="vote-info">
+
+                <small>
+                    🏆 CATEGORÍA
+                </small>
+
+                <strong>
+                    ${escaparHTML(voto.categoria)}
+                </strong>
+
+            </div>
+
+
+            <div class="vote-info">
+
+                <small>
+                    🎯 NOMINADO
+                </small>
+
+                <strong>
+                    ${escaparHTML(voto.nominado)}
+                </strong>
+
+                <small>
+                    ${fecha}
+                </small>
+
+            </div>
+
+
+            <button
+                class="delete-vote"
+            >
+                🗑️ Eliminar
+            </button>
+
+        `;
+
+
+        const botonEliminar =
+            div.querySelector(
+                ".delete-vote"
+            );
+
+
+        botonEliminar.onclick =
+            () =>
+                eliminarVoto(
+                    voto.id,
+                    usuario,
+                    voto.nominado,
+                    voto.categoria
+                );
+
+
+        contenedor.appendChild(div);
+
+    });
+
+}
+
+
+/* =========================================================
+   BUSCAR VOTOS
+========================================================= */
+
+function filtrarVotos(){
+
+    const texto =
+        document
+            .getElementById("voteSearch")
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    if(!texto){
+
+        mostrarVotos(
+            todosLosVotos
+        );
+
+        return;
+
+    }
+
+
+    const filtrados =
+        todosLosVotos.filter(
+            voto => {
+
+                const usuario =
+                    (
+                        voto.usuario_nombre ||
+                        ""
+                    ).toLowerCase();
+
+
+                const categoria =
+                    (
+                        voto.categoria ||
+                        ""
+                    ).toLowerCase();
+
+
+                const nominado =
+                    (
+                        voto.nominado ||
+                        ""
+                    ).toLowerCase();
+
+
+                return (
+                    usuario.includes(texto) ||
+                    categoria.includes(texto) ||
+                    nominado.includes(texto)
+                );
+
+            }
+        );
+
+
+    mostrarVotos(
+        filtrados
+    );
+
+}
+
+
+/* =========================================================
+   ELIMINAR VOTO
+========================================================= */
+
+async function eliminarVoto(
+    id,
+    usuario,
+    nominado,
+    categoria
+){
+
+    if(!esAdministrador){
+
+        alert(
+            "No tienes permisos para eliminar votos."
+        );
+
+        return;
+
+    }
+
+
+    const confirmar =
+        confirm(
+
+            "¿Eliminar este voto?\n\n" +
+
+            "Usuario: " +
+            usuario +
+
+            "\nCategoría: " +
+            categoria +
+
+            "\nNominado: " +
+            nominado
+
+        );
+
+
+    if(!confirmar){
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+            .from("votos")
+            .delete()
+            .eq("id",id);
+
+
+    if(error){
+
+        console.error(error);
+
+        alert(
+            "No se pudo eliminar el voto.\n\n" +
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    alert(
+        "Voto eliminado correctamente. 🗑️"
+    );
+
+
+    await cargarVotos();
+
+}
+
+
+/* =========================================================
+   FORMATEAR FECHA
+========================================================= */
+
+function formatearFecha(fecha){
+
+    if(!fecha){
+
+        return "Fecha desconocida";
+
+    }
+
+
+    const fechaObjeto =
+        new Date(fecha);
+
+
+    return fechaObjeto.toLocaleString(
+        "es-DO",
+        {
+            dateStyle:"short",
+            timeStyle:"short"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SEGURIDAD HTML
+========================================================= */
+
+function escaparHTML(texto){
+
+    if(texto === null ||
+       texto === undefined){
+
+        return "";
+
+    }
+
+
+    return String(texto)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================================
+   INICIALIZAR
 ========================================================= */
 
 mostrarCategorias();
@@ -1696,7 +2886,12 @@ supabaseClient
     .auth
     .onAuthStateChange(
         () => {
-            actualizarUsuario();
+
+            setTimeout(
+                actualizarUsuario,
+                100
+            );
+
         }
     );
 
