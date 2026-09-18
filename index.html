@@ -789,6 +789,44 @@ footer{
     box-shadow:0 8px 25px rgba(34,197,94,.25);
 }
 
+
+.general-news{
+    max-width:850px;
+    margin:0 auto;
+    display:grid;
+    gap:16px;
+}
+
+.general-news-card{
+    padding:24px;
+    border-radius:18px;
+    background:rgba(10,35,22,.65);
+    border:1px solid #14532d;
+    transition:.2s;
+}
+
+.general-news-card:hover{
+    transform:translateY(-2px);
+    border-color:#22c55e;
+}
+
+.general-news-date{
+    color:#86efac;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.general-news-card h3{
+    font-size:21px;
+    margin-bottom:8px;
+}
+
+.general-news-card p{
+    color:#cbd5d1;
+    line-height:1.7;
+}
+
 .general-section-title{
     text-align:center;
     margin:25px 0 20px;
@@ -997,6 +1035,10 @@ footer{
 Inicio
 </button>
 
+<button onclick="irAGeneral('generalNovedades')">
+Novedades
+</button>
+
 <button onclick="irAGeneral('generalEventos')">
 Eventos
 </button>
@@ -1159,6 +1201,24 @@ algunos de ellos siendo creadores de contenido.
 
 </div>
 
+<div class="general-info-section" id="generalNovedades">
+
+<h2>🆕 Novedades</h2>
+
+<p>Las cosas nuevas que vayan pasando en Los Insanos aparecerán aquí.</p>
+
+<div class="general-news">
+
+<div class="general-news-card">
+<div class="general-news-date">📢 Novedad</div>
+<h3>¡Ya está disponible la página de Los Insanos!</h3>
+<p>Este será el sitio donde podremos reunir información del grupo, eventos, proyectos y otras novedades de Los Insanos.</p>
+</div>
+
+</div>
+
+</div>
+
 <div class="general-info-section">
 
 <h2>🌐 Redes</h2>
@@ -1169,6 +1229,10 @@ algunos de ellos siendo creadores de contenido.
 
 <a class="general-social" href="https://www.youtube.com/@johsandertop102" target="_blank" rel="noopener">
 ▶️ YouTube — Johsandertop102
+</a>
+
+<a class="general-social" href="https://discord.gg/MtmD7yZAkD" target="_blank" rel="noopener">
+💬 Discord — Los Insanos
 </a>
 
 </div>
