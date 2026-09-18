@@ -473,21 +473,38 @@ section{
     border-radius:14px;
 }
 
-.participant-photo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
 .participant-photo{
-    width:45px;
-    height:45px;
+    width:70px;
+    height:70px;
     border-radius:50%;
-    background:linear-gradient(135deg,#db2777,#7c3aed);
+    background:linear-gradient(135deg,#166534,#22c55e);
     display:flex;
     align-items:center;
     justify-content:center;
     font-weight:bold;
+    font-size:18px;
+    flex-shrink:0;
+    overflow:hidden;
+}
+
+.participant-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.guest-title{
+    margin:35px 0 18px;
+    text-align:center;
+}
+
+.guest-title h2{
+    margin-bottom:6px;
+}
+
+.guest-title p{
+    color:#aaa;
 }
 
 /* ================= FAQ ================= */
@@ -1191,9 +1208,9 @@ algunos de ellos siendo creadores de contenido.
 
 <div class="insano-member">
 <div class="insano-photo">
-<img src="fotos/gabo.png" alt="Gabo" onerror="this.style.display='none'; this.parentElement.textContent='G';">
+<img src="fotos/gabo.png" alt="Gabriel09" onerror="this.style.display='none'; this.parentElement.textContent='G';">
 </div>
-<h3>Gabo</h3>
+<h3>Gabriel09</h3>
 <p>Miembro</p>
 </div>
 
@@ -1549,6 +1566,13 @@ class="participants"
 id="participantList"
 ></div>
 
+<div class="guest-title">
+<h2>👋 Invitados</h2>
+<p>Personas invitadas que también forman parte del evento.</p>
+</div>
+
+<div class="participants" id="guestList"></div>
+
 </section>
 
 
@@ -1593,7 +1617,7 @@ no los creé yo desde cero.
 
 <p>
 Además, estaba pensando hacerlo solo y hacerlo tipo sorpresa para el grupo,
-así para final de año, pero pues al final les expliqué la idea a Eliam y Gabo
+así para final de año, pero pues al final les expliqué la idea a Eliam y Gabriel09
 y de ahí se fue enterando todo el grupo.
 </p>
 
@@ -1988,10 +2012,21 @@ const participantes = [
     },
 
     {
-        nombre:"Gabo",
+        nombre:"Gabriel09",
         foto:"fotos/gabo.png"
     }
 
+];
+
+
+/* =========================================================
+   CATEGORIAS
+========================================================= */
+
+const invitados = [
+    { nombre:"Raydin", foto:"fotos/raydin.png" },
+    { nombre:"Reily", foto:"fotos/reily.png" },
+    { nombre:"Elier", foto:"fotos/elier.png" }
 ];
 
 
@@ -2940,45 +2975,33 @@ async function comprobarAdministrador(userId){
    PARTICIPANTES
 ========================================================= */
 
-function mostrarParticipantes(){
+function renderListaPersonas(lista, contenedorId){
 
-    const contenedor =
-        document.getElementById("participantList");
-
+    const contenedor = document.getElementById(contenedorId);
+    if(!contenedor) return;
     contenedor.innerHTML = "";
 
-
-    participantes.forEach(persona => {
-
-        const div =
-            document.createElement("div");
-
-        div.className =
-            "participant";
-
+    lista.forEach(persona => {
+        const div = document.createElement("div");
+        div.className = "participant";
 
         div.innerHTML = `
-
             <div class="participant-photo">
-
                 ${persona.foto
                     ? `<img src="${persona.foto}" alt="${persona.nombre}" onerror="this.style.display='none'; this.parentElement.textContent=obtenerIniciales(persona.nombre);">`
                     : obtenerIniciales(persona.nombre)
                 }
-
             </div>
-
-            <strong>
-                ${persona.nombre}
-            </strong>
-
+            <strong>${persona.nombre}</strong>
         `;
 
-
         contenedor.appendChild(div);
-
     });
+}
 
+function mostrarParticipantes(){
+    renderListaPersonas(participantes, "participantList");
+    renderListaPersonas(invitados, "guestList");
 }
 
 
