@@ -344,6 +344,61 @@ section{
     opacity:.85;
 }
 
+.nominee-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    width:100%;
+}
+
+.nominee-actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-shrink:0;
+}
+
+.clip-btn{
+    background:#20202d;
+    border:1px solid #353548;
+    color:#e5e7eb;
+    padding:9px 11px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.clip-btn:hover{
+    border-color:#7c3aed;
+    background:#29293a;
+}
+
+.nominee-clip{
+    width:100%;
+    margin-top:12px;
+    padding-top:12px;
+    border-top:1px solid #303044;
+}
+
+.nominee-video{
+    display:block;
+    width:100%;
+    max-height:520px;
+    border-radius:12px;
+    background:#09090f;
+}
+
+.clip-close{
+    margin-top:8px;
+    background:transparent;
+    border:none;
+    color:#a78bfa;
+    cursor:pointer;
+    font-size:12px;
+}
+
 .back-btn{
     margin-bottom:20px;
     background:#20202d;
@@ -642,6 +697,9 @@ footer{
 
     .vote-btn{
         padding:9px 10px;
+    }
+.nominee-actions{
+        width:auto;
     }
 
     .vote-row{
@@ -2044,6 +2102,28 @@ const categorias = [
 
 
 /* =========================================================
+   CLIPS DE LOS NOMINADOS
+   
+   Cuando quieras agregar un clip, pon la ruta del archivo aquí.
+   Ejemplo:
+   "Meme del año": {
+       "Johsandertop102": "clips/meme-johsander.mp4"
+   }
+   
+   La carpeta recomendada es: clips/
+========================================================= */
+
+const clipsPorCategoria = {
+
+    // Ejemplo (puedes quitar los // cuando tengas un clip):
+    // "Meme del año": {
+    //     "Johsandertop102": "clips/meme-johsander.mp4"
+    // }
+
+};
+
+
+/* =========================================================
    VARIABLES ADMIN
 ========================================================= */
 
@@ -2249,6 +2329,9 @@ function abrirCategoria(categoria){
         const iniciales =
             obtenerIniciales(nombre);
 
+        const clip =
+            (clipsPorCategoria[categoria.nombre] || {})[nombre] || "";
+
 
         const div =
             document.createElement("div");
@@ -2284,24 +2367,57 @@ function abrirCategoria(categoria){
 
         }
 
+        const clipButtonHTML = clip ? `
+            <button class="clip-btn" type="button">
+                ▶ Clip
+            </button>
+        ` : "";
+
+        const clipHTML = clip ? `
+            <div class="nominee-clip hidden">
+                <video
+                    class="nominee-video"
+                    controls
+                    preload="metadata"
+                    playsinline
+                >
+                    <source src="${clip}" type="video/mp4">
+                    Tu navegador no puede reproducir este video.
+                </video>
+                <button class="clip-close" type="button">
+                    ▲ Ocultar clip
+                </button>
+            </div>
+        ` : "";
 
         div.innerHTML = `
 
-            <div class="nominee-left">
+            <div class="nominee-row">
 
-                ${imagenHTML}
+                <div class="nominee-left">
 
-                <div class="nominee-name">
-                    ${nombre}
+                    ${imagenHTML}
+
+                    <div class="nominee-name">
+                        ${nombre}
+                    </div>
+
+                </div>
+
+                <div class="nominee-actions">
+                    ${clipButtonHTML}
+
+                    <button
+                        class="vote-btn"
+                        type="button"
+                    >
+                        🗳️ Votar
+                    </button>
                 </div>
 
             </div>
 
-            <button
-                class="vote-btn"
-            >
-                🗳️ Votar
-            </button>
+            ${clipHTML}
 
         `;
 
@@ -2315,6 +2431,43 @@ function abrirCategoria(categoria){
                 categoria.nombre,
                 nombre
             );
+
+
+        if(clip){
+
+            const clipButton =
+                div.querySelector(".clip-btn");
+
+            const clipBox =
+                div.querySelector(".nominee-clip");
+
+            const closeButton =
+                div.querySelector(".clip-close");
+
+            const video =
+                div.querySelector(".nominee-video");
+
+            clipButton.onclick = () => {
+                const abierto =
+                    !clipBox.classList.contains("hidden");
+
+                if(abierto){
+                    clipBox.classList.add("hidden");
+                    video.pause();
+                    clipButton.textContent = "▶ Clip";
+                }else{
+                    clipBox.classList.remove("hidden");
+                    clipButton.textContent = "▼ Clip";
+                }
+            };
+
+            closeButton.onclick = () => {
+                clipBox.classList.add("hidden");
+                video.pause();
+                clipButton.textContent = "▶ Clip";
+            };
+
+        }
 
 
         lista.appendChild(div);
